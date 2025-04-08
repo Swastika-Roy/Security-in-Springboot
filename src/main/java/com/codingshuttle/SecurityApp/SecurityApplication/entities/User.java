@@ -1,22 +1,22 @@
 package com.codingshuttle.SecurityApp.SecurityApplication.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.management.relation.Role;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User implements UserDetails {
-
 
 
     @Override
@@ -44,4 +44,15 @@ public class User implements UserDetails {
     private String password;
 
      private String name;
+
+    public User(Long id, String email, String password, String name) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 }

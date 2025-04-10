@@ -1,6 +1,7 @@
 package com.codingshuttle.SecurityApp.SecurityApplication.services;
 
 import com.codingshuttle.SecurityApp.SecurityApplication.entities.User;
+import com.codingshuttle.SecurityApp.SecurityApplication.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -33,14 +34,14 @@ public class JwtService {
 //    private SecretKey getSecretKey(){
 //        return Keys.hmacShaKeyFor(jwtSecretKey.getBytes(StandardCharsets.UTF_8));
 //    }
-@Value("${jwt.secretKey}")
-private String jwtSecretKey;
+
+private String secretKey="ads9f6askj3h4k1hf86asdfiahkjh34a789s6df89ayshkjh3jkh786adsf78ay";
 
 //@Value("${jwt.secretKey:defaultFallbackKey}")
 //private String jwtSecretKey;
-    private SecretKey getSecretKey() {
-        return Keys.hmacShaKeyFor(jwtSecretKey.getBytes(StandardCharsets.UTF_8));
-    }
+public SecretKey getSecretKey(){
+    return Keys.hmacShaKeyFor(secretKey.getBytes(StandardCharsets.UTF_8));
+}
 
     public Long getUserIdFromToken(String token) {
         Claims claims = Jwts.parser()
@@ -61,6 +62,12 @@ private String jwtSecretKey;
                 .signWith(getSecretKey())
                 .compact();
     }
+
+
+
+
+
+
 
 
 //    public Long getUserIdFromToken(String token) {

@@ -22,12 +22,12 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    private final JwtService    jwtService;
 
    private final UserService userService;
 
    @Autowired
-   @Qualifier("handleExceptionResolver")
+//   @Qualifier("handleExceptionResolver")
    private HandlerExceptionResolver handlerExceptionResolver;
 
 //    public JwtAuthFilter(JwtService jwtService, UserService userService) {

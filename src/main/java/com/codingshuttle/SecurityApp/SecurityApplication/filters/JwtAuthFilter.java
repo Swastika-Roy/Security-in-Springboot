@@ -26,7 +26,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
    private final UserService userService;
 
-   @Autowired
+    public JwtAuthFilter(JwtService jwtService, UserService userService, HandlerExceptionResolver handlerExceptionResolver) {
+        this.jwtService = jwtService;
+        this.userService = userService;
+        this.handlerExceptionResolver = handlerExceptionResolver;
+    }
+
+    @Autowired
 //   @Qualifier("handleExceptionResolver")
    private HandlerExceptionResolver handlerExceptionResolver;
 
@@ -58,9 +64,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
             }
+            filterChain.doFilter(request, response);
         } catch (Exception ex) {
             handlerExceptionResolver.resolveException(request,response,null,ex);
         }
-        filterChain.doFilter(request, response);
     }
 }

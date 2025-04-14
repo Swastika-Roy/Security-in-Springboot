@@ -52,13 +52,21 @@ public SecretKey getSecretKey(){
         return Long.valueOf(claims.getSubject());
     }
 
-    public String generateToken(User user) {
+    public String generateAccessToken(User user) {
         return Jwts.builder()
                 .subject(user.getId().toString())
                 .claim("email", user.getEmail())
                 .claim("roles", user.getRoles()) // Use actual user roles
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60)) // 1 hour
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 10)) // 1 hour
+                .signWith(getSecretKey())
+                .compact();
+    }
+    public String generateRefreshToken(User user) {
+        return Jwts.builder()
+                .subject(user.getId().toString())
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 30 * 6)) // 1 hour
                 .signWith(getSecretKey())
                 .compact();
     }

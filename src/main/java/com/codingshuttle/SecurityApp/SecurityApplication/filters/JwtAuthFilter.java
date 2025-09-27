@@ -7,6 +7,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,15 +28,31 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
    private final UserService userService;
 
-    public JwtAuthFilter(JwtService jwtService, UserService userService, HandlerExceptionResolver handlerExceptionResolver) {
-        this.jwtService = jwtService;
-        this.userService = userService;
-        this.handlerExceptionResolver = handlerExceptionResolver;
-    }
+
+
+
+
+
+//    public JwtAuthFilter(JwtService jwtService, UserService userService, HandlerExceptionResolver handlerExceptionResolver) {
+//        this.jwtService = jwtService;
+//        this.userService = userService;
+//        this.handlerExceptionResolver = handlerExceptionResolver;
+//    }
 
     @Autowired
 //   @Qualifier("handleExceptionResolver")
    private HandlerExceptionResolver handlerExceptionResolver;
+
+//    public JwtAuthFilter(JwtService jwtService, UserService userService) {
+//        this.jwtService = jwtService;
+//        this.userService = userService;
+//    }
+//
+//    public JwtAuthFilter(JwtService jwtService, UserService userService) {
+//        this.jwtService = jwtService;
+//        this.userService = userService;
+//    }
+
 
 //    public JwtAuthFilter(JwtService jwtService, UserService userService) {
 //        this.jwtService = jwtService;

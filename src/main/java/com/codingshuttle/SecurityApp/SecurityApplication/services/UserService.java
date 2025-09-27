@@ -52,6 +52,7 @@ public class UserService implements UserDetailsService {
         return modelMapper.map(savedUser,UserDto.class);
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username).
@@ -63,5 +64,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException
                 ("User with id " + userId + " not found"));
     }
+    
+    public User getUsrByEmail(String email){
+        return userRepository.findByEmail(email).orElse(null);
+    }
 
+    public User save(User newUser) {
+        return userRepository.save(newUser);
+    }
 }

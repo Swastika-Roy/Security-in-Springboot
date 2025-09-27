@@ -13,11 +13,11 @@ public class LoginResponseDto {
     private String accessToken;
     private String refreshToken;
 
-    public LoginResponseDto(Long id, String accessToken, String refreshToken) {
-        this.id = id;
-        this.accessToken = accessToken;
-        this.refreshToken = refreshToken;
-    }
+//    public LoginResponseDto(Long id, String accessToken, String refreshToken) {
+//        this.id = id;
+//        this.accessToken = accessToken;
+//        this.refreshToken = refreshToken;
+//    }
 
     public Long getId() {
         return id;

@@ -56,7 +56,7 @@ public SecretKey getSecretKey(){
         return Jwts.builder()
                 .subject(user.getId().toString())
                 .claim("email", user.getEmail())
-                .claim("roles", user.getRoles()) // Use actual user roles
+                .claim("roles", user.getRoles().toString()) // Use actual user roles
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 10)) // 1 hour
                 .signWith(getSecretKey())
